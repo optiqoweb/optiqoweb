@@ -253,8 +253,15 @@
   .foot-brand p{color:var(--slate); font-size:14px; margin-top:14px; max-width:280px; line-height:1.6;}
   .foot-cols{display:flex; gap:56px; flex-wrap:wrap;}
   .foot-col h4{font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); margin-bottom:18px; font-family:'JetBrains Mono',monospace;}
-  .foot-col a{display:block; font-size:14px; color:#c3cad9; margin-bottom:12px; transition:color .2s;}
+  .foot-col a{display:block; font-size:14px; color:#c3cad9; margin-bottom:12px; transition:color .2s; position:relative;}
   .foot-col a:hover{color:var(--cyan);}
+  .copy-toast{
+    position:absolute; left:0; top:-28px; background:var(--cyan); color:#05070d;
+    font-size:11px; font-weight:600; padding:4px 10px; border-radius:100px;
+    opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; transform:translateY(4px);
+    white-space:nowrap;
+  }
+  .copy-toast.show{opacity:1; transform:translateY(0);}
   .foot-bottom{
     border-top:1px solid var(--line); padding-top:26px;
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
@@ -396,8 +403,8 @@
     <a href="#work">Work</a>
     <a href="#services">Services</a>
     <a href="#process">Process</a>
-    <a href="contact.html" target="_blank" rel="noopener">Contact</a>
-    <a href="contact.html" target="_blank" rel="noopener" class="mm-cta">Start a project</a>
+    <a href="contact.html" target="" rel="noopener">Contact</a>
+    <a href="contact.html" target="" rel="noopener" class="mm-cta">Start a project</a>
   </div>
 </header>
 
@@ -572,7 +579,7 @@
         </div>
         <div class="foot-col">
           <h4>Contact</h4>
-          <a href="mailto:optiqoweb@gmail.com">optiqoweb@gmail.com</a>
+          <a href="mailto:optiqoweb@gmail.com" id="footerEmailLink">optiqoweb@gmail.com<span class="copy-toast" id="footerEmailToast">Copied!</span></a>
           <a href="tel:+8801935128454">+880 1935-128454</a>
           <a href="tel:+8801742316691">+880 1742-316691</a>
         </div>
@@ -715,6 +722,21 @@
   topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+</script>
+
+<script>
+  const footerEmailLink = document.getElementById('footerEmailLink');
+  const footerEmailToast = document.getElementById('footerEmailToast');
+  if(footerEmailLink && footerEmailToast){
+    footerEmailLink.addEventListener('click', () => {
+      const email = 'optiqoweb@gmail.com';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      footerEmailToast.classList.add('show');
+      setTimeout(() => footerEmailToast.classList.remove('show'), 1600);
+    });
+  }
 </script>
 
 </body>
