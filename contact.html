@@ -135,49 +135,66 @@
   .faq-fab:hover{transform:translateY(-3px) scale(1.04);}
 
   .faq-widget{
-    position:fixed; bottom:96px; left:26px; z-index:61;
-    width:320px; max-width:calc(100vw - 52px); height:440px; max-height:calc(100vh - 140px);
-    background:#0b1120; border:1px solid var(--line); border-radius:18px;
+    position:fixed; bottom:100px; left:26px; z-index:61;
+    width:340px; max-width:calc(100vw - 52px); height:480px; max-height:calc(100vh - 140px);
+    background:#0d1424; border:1px solid rgba(255,255,255,0.1); border-radius:28px;
     display:flex; flex-direction:column; overflow:hidden;
-    box-shadow:0 24px 48px -12px rgba(0,0,0,0.55);
-    opacity:0; pointer-events:none; transform:translateY(12px) scale(.98);
-    transition:opacity .22s, transform .22s;
+    box-shadow:0 28px 60px -14px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.06);
+    opacity:0; pointer-events:none; transform:translateY(16px) scale(.96);
+    transition:opacity .25s ease, transform .25s ease;
   }
   .faq-widget.open{opacity:1; pointer-events:auto; transform:translateY(0) scale(1);}
   .faq-head{
-    padding:16px 18px; border-bottom:1px solid var(--line);
-    display:flex; justify-content:space-between; align-items:center;
-    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px;
+    padding:18px 20px; border-bottom:1px solid var(--line);
+    background:linear-gradient(100deg, var(--blue), var(--cyan));
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
   }
-  .faq-head button{background:none; border:none; color:#aab2c5; font-size:20px; cursor:pointer; line-height:1;}
-  .faq-head button:hover{color:#fff;}
-  .faq-body{flex:1; overflow-y:auto; padding:16px 18px; display:flex; flex-direction:column; gap:10px;}
+  .faq-head-info{display:flex; align-items:center; gap:10px;}
+  .faq-avatar{
+    width:34px; height:34px; border-radius:50%; background:rgba(5,7,13,0.18);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#05070d;
+  }
+  .faq-head-text{display:flex; flex-direction:column; line-height:1.25;}
+  .faq-head-text span{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14.5px; color:#05070d;}
+  .faq-head-text small{font-size:11px; color:rgba(5,7,13,0.65); font-weight:500;}
+  .faq-head button{
+    background:rgba(5,7,13,0.14); border:none; color:#05070d; font-size:18px; cursor:pointer;
+    line-height:1; width:28px; height:28px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; transition:background .2s;
+  }
+  .faq-head button:hover{background:rgba(5,7,13,0.28);}
+  .faq-body{flex:1; overflow-y:auto; padding:18px 20px; display:flex; flex-direction:column; gap:12px; background:#0d1424;}
   .faq-msg{
-    font-size:13.5px; line-height:1.55; padding:10px 13px; border-radius:12px; max-width:88%;
+    font-size:13.5px; line-height:1.55; padding:11px 15px; border-radius:20px; max-width:86%;
   }
-  .faq-msg.bot{background:rgba(255,255,255,0.05); color:#dbe1ee; align-self:flex-start; border-bottom-left-radius:3px;}
-  .faq-msg.user{background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d; align-self:flex-end; border-bottom-right-radius:3px; font-weight:500;}
-  .faq-chips{display:flex; flex-wrap:wrap; gap:8px; padding:0 18px 14px;}
+  .faq-msg.bot{background:rgba(255,255,255,0.07); color:#dbe1ee; align-self:flex-start; border-bottom-left-radius:6px;}
+  .faq-msg.user{background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d; align-self:flex-end; border-bottom-right-radius:6px; font-weight:500;}
+  .faq-chips{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:0 20px 14px;
+  }
   .faq-chips .chip{
-    font-size:12px; padding:7px 12px; border-radius:100px; border:1px solid var(--line);
-    background:transparent; color:#c3cad9; cursor:pointer; transition:border-color .2s, color .2s;
+    font-size:11.5px; padding:9px 10px; border-radius:14px; border:1px solid transparent;
+    background:rgba(255,255,255,0.06); color:#c3cad9; cursor:pointer; text-align:center;
+    line-height:1.3; overflow:hidden; text-overflow:ellipsis;
+    transition:background .2s, color .2s, transform .15s;
   }
-  .faq-chips .chip:hover{border-color:var(--cyan); color:var(--cyan);}
-  .faq-form{display:flex; gap:8px; padding:14px 18px; border-top:1px solid var(--line);}
+  .faq-chips .chip:hover{background:rgba(56,189,248,0.14); color:var(--cyan); transform:translateY(-1px);}
+  .faq-form{display:flex; gap:8px; padding:16px 18px; border-top:1px solid var(--line);}
   .faq-form input{
-    flex:1; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:100px;
-    padding:9px 14px; color:#fff; font-size:13px; font-family:'Inter',sans-serif;
+    flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:100px;
+    padding:11px 16px; color:#fff; font-size:13px; font-family:'Inter',sans-serif;
   }
   .faq-form input:focus{outline:none; border-color:var(--cyan);}
   .faq-form input::placeholder{color:var(--slate);}
   .faq-form button{
-    width:36px; height:36px; border-radius:50%; border:none; flex-shrink:0;
+    width:40px; height:40px; border-radius:50%; border:none; flex-shrink:0;
     background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 6px 14px -4px rgba(47,111,237,0.55);
   }
 
   @media (max-width:480px){
-    .faq-widget{left:16px; bottom:90px;}
+    .faq-widget{left:16px; bottom:94px; width:calc(100vw - 32px); height:min(520px, calc(100vh - 150px));}
     .faq-fab{left:16px;}
   }
 </style>
@@ -246,7 +263,15 @@
 
 <div class="faq-widget" id="faqWidget">
   <div class="faq-head">
-    <span>Optiqo Assistant</span>
+    <div class="faq-head-info">
+      <div class="faq-avatar">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      </div>
+      <div class="faq-head-text">
+        <span>Optiqo Assistant</span>
+        <small>Usually replies instantly</small>
+      </div>
+    </div>
     <button id="faqClose" aria-label="Close chat">&times;</button>
   </div>
   <div class="faq-body" id="faqBody">
