@@ -167,6 +167,23 @@
   .service ul li{font-size:13.5px; color:#c3cad9; display:flex; align-items:center; gap:9px;}
   .service ul li::before{content:''; width:5px; height:5px; background:var(--blue); border-radius:1px; flex-shrink:0;}
 
+  /* PORTFOLIO */
+  .portfolio{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .port-card{
+    display:block; padding:30px 28px; border:1px solid var(--line); border-radius:16px;
+    background:rgba(255,255,255,0.015); transition:border-color .25s, transform .25s, background .25s;
+  }
+  .port-card:hover{border-color:rgba(56,189,248,0.4); transform:translateY(-4px); background:rgba(47,111,237,0.05);}
+  .port-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; color:var(--slate);}
+  .port-top svg{transition:transform .25s, color .25s;}
+  .port-card:hover .port-top svg{color:var(--cyan); transform:translate(2px,-2px);}
+  .port-tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--blue); border:1px solid rgba(47,111,237,0.35); border-radius:100px; padding:5px 12px;
+  }
+  .port-card h3{font-size:19px; font-weight:600; margin-bottom:10px; letter-spacing:-0.01em;}
+  .port-card p{font-size:14px; color:#9aa4ba; line-height:1.6;}
+
   /* PROCESS */
   .process{display:flex; flex-direction:column;}
   .proc-row{
@@ -211,6 +228,7 @@
   @media (max-width:860px){
     nav ul{display:none;}
     .services{grid-template-columns:1fr;}
+    .portfolio{grid-template-columns:1fr;}
     .proc-row{grid-template-columns:60px 1fr; }
     .proc-row > p{grid-column:2 / 3;}
     section{padding:88px 0;}
@@ -225,9 +243,10 @@
     <nav>
       <div class="logo"><span class="dot"></span>Optiqo</div>
       <ul>
+        <li><a href="#work">Work</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#process">Process</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Start a project</a>
     </nav>
@@ -264,6 +283,43 @@
     <div class="strip-item"><b>Digital Solutions</b> &nbsp;& Growth</div>
   </div>
 </div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Our work</span>
+      <h2>Live sites we've built and run.</h2>
+      <p>A news portal, an e-commerce template, and a photography business — all designed and developed in-house.</p>
+    </div>
+
+    <div class="portfolio">
+      <a class="port-card" href="https://dainikanulipi.github.io/da/" target="_blank" rel="noopener">
+        <div class="port-top">
+          <span class="port-tag">News portal</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </div>
+        <h3>দৈনিক অনুলিপি</h3>
+        <p>A full Bengali news portal — dark mode, subscriptions, and a reporter submission workflow.</p>
+      </a>
+      <a class="port-card" href="https://matirkothaorg.github.io/matirkothaorg/" target="_blank" rel="noopener">
+        <div class="port-top">
+          <span class="port-tag">E-commerce</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </div>
+        <h3>মাটির কথা</h3>
+        <p>A Bengali e-commerce template, backed by Google Sheets, customized for small business clients.</p>
+      </a>
+      <a class="port-card" href="https://farhansphotography.github.io/fp/" target="_blank" rel="noopener">
+        <div class="port-top">
+          <span class="port-tag">Photography</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </div>
+        <h3>Farhan's Photography</h3>
+        <p>A cinematic portfolio site with live price estimates and WhatsApp booking built in.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section id="services">
   <div class="wrap">
@@ -362,6 +418,7 @@
       <div class="foot-cols">
         <div class="foot-col">
           <h4>Studio</h4>
+          <a href="#work">Work</a>
           <a href="#services">Services</a>
           <a href="#process">Process</a>
         </div>
