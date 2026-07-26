@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Optiqo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080b14;
+    --blue:#2f6fed;
+    --cyan:#38bdf8;
+    --paper:#f5f7fb;
+    --slate:#6b7690;
+    --line:rgba(255,255,255,0.09);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  .wrap{max-width:900px; margin:0 auto; padding:0 32px; width:100%;}
+
+  header{padding:32px 0; border-bottom:1px solid var(--line);}
+  .logo{display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; letter-spacing:-0.02em;}
+  .logo .dot{width:8px;height:8px;background:var(--cyan); border-radius:2px;}
+  .back{font-size:13px; color:#aab2c5; display:inline-flex; align-items:center; gap:6px; transition:color .2s;}
+  .back:hover{color:#fff;}
+  .head-row{display:flex; justify-content:space-between; align-items:center;}
+
+  main{flex:1; display:flex; align-items:center; padding:64px 0;}
+  .hero-bg{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 700px 500px at 82% 10%, rgba(47,111,237,0.22), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 10% 90%, rgba(56,189,248,0.1), transparent 60%);
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.12em;
+    color:var(--cyan); text-transform:uppercase; margin-bottom:20px; display:block;
+  }
+  h1{font-size:clamp(32px,5vw,52px); font-weight:700; letter-spacing:-0.03em; max-width:600px; line-height:1.08;}
+  .lead{margin-top:20px; max-width:480px; color:#aab2c5; font-size:16.5px; line-height:1.7;}
+
+  .cards{margin-top:52px; display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .card{
+    border:1px solid var(--line); border-radius:16px; padding:26px 26px;
+    background:rgba(255,255,255,0.015); transition:border-color .25s, transform .25s, background .25s;
+  }
+  .card.link{display:block;}
+  .card.link:hover{border-color:rgba(56,189,248,0.4); transform:translateY(-3px); background:rgba(47,111,237,0.05);}
+  .card .label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:14px; display:block;
+  }
+  .card .value{font-size:16px; font-weight:600; margin-bottom:4px;}
+  .card .value + .value{margin-top:8px;}
+  .card.wide{grid-column:1 / -1;}
+  .card a.num-link{
+    display:block; width:fit-content; border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .card a.num-link:hover{color:var(--cyan); border-color:var(--cyan);}
+
+  footer{border-top:1px solid var(--line); padding:24px 0; font-size:13px; color:var(--slate);}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:640px){
+    .cards{grid-template-columns:1fr;}
+  }
+
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:60;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; color:#05070d;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px -6px rgba(37,211,102,0.55);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover{transform:translateY(-3px) scale(1.04); box-shadow:0 14px 32px -6px rgba(37,211,102,0.7);}
+
+  .top-btn{
+    position:fixed; bottom:96px; right:26px; z-index:60;
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(11,17,32,0.85); backdrop-filter:blur(10px); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; pointer-events:none; transform:translateY(8px);
+    transition:opacity .25s, transform .25s, border-color .25s;
+  }
+  .top-btn.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .top-btn:hover{border-color:var(--cyan); color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+
+<header>
+  <div class="wrap head-row">
+    <div class="logo"><span class="dot"></span>Optiqo</div>
+    <a href="index.html" class="back">&larr; Back to home</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow">Get in touch</span>
+    <h1>Let's talk about your project.</h1>
+    <p class="lead">Reach out by email, phone, or WhatsApp — whichever's easiest. We usually reply within a day.</p>
+
+    <div class="cards">
+      <a class="card link wide" href="mailto:optiqoweb@gmail.com">
+        <span class="label">Email</span>
+        <div class="value">optiqoweb@gmail.com</div>
+      </a>
+      <div class="card">
+        <span class="label">Phone</span>
+        <a class="value num-link" href="tel:+8801935128454">+880 1935-128454</a>
+        <a class="value num-link" href="tel:+8801742316691">+880 1742-316691</a>
+      </div>
+      <div class="card">
+        <span class="label">WhatsApp</span>
+        <a class="value num-link" href="https://wa.me/8801935128454" target="_blank" rel="noopener">+880 1935-128454</a>
+        <a class="value num-link" href="https://wa.me/8801742316691" target="_blank" rel="noopener">+880 1742-316691</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Optiqo. All rights reserved.</span>
+    <span class="mono">Designing Ideas &middot; Developing Solutions &middot; Growing Brands</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/8801935128454" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.858.507 3.649 1.463 5.223L2 22l4.898-1.443A9.965 9.965 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.19a8.14 8.14 0 01-4.166-1.14l-.298-.177-2.905.857.867-2.833-.194-.29A8.157 8.157 0 013.86 12.004c0-4.492 3.65-8.143 8.144-8.143 4.494 0 8.144 3.65 8.144 8.143 0 4.494-3.65 8.186-8.144 8.186z"/></svg>
+</a>
+
+<button class="top-btn" id="topBtn" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 480);
+  });
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
