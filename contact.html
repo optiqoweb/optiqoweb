@@ -79,9 +79,16 @@
     font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--blue); margin-bottom:14px; display:block;
   }
-  .card .value{font-size:16px; font-weight:600; margin-bottom:4px;}
+  .card .value{font-size:16px; font-weight:600; margin-bottom:4px; position:relative; display:inline-block;}
   .card .value + .value{margin-top:8px;}
   .card.wide{grid-column:1 / -1;}
+  .copy-toast{
+    position:absolute; left:0; top:-32px; background:var(--cyan); color:#05070d;
+    font-size:11px; font-weight:600; padding:4px 10px; border-radius:100px;
+    opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; transform:translateY(4px);
+    white-space:nowrap;
+  }
+  .copy-toast.show{opacity:1; transform:translateY(0);}
   .card a.num-link{
     display:block; width:fit-content; border-bottom:1px solid transparent;
     transition:color .2s, border-color .2s;
@@ -192,9 +199,9 @@
     <p class="lead">Reach out by email, phone, or WhatsApp — whichever's easiest. We usually reply within a day.</p>
 
     <div class="cards">
-      <a class="card link wide" href="mailto:optiqoweb@gmail.com">
+      <a class="card link wide" href="mailto:optiqoweb@gmail.com" id="emailCard">
         <span class="label">Email</span>
-        <div class="value">optiqoweb@gmail.com</div>
+        <div class="value">optiqoweb@gmail.com<span class="copy-toast" id="emailCardToast">Copied!</span></div>
       </a>
       <div class="card">
         <span class="label">Phone</span>
@@ -320,6 +327,21 @@
   topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+</script>
+
+<script>
+  const emailCard = document.getElementById('emailCard');
+  const emailCardToast = document.getElementById('emailCardToast');
+  if(emailCard && emailCardToast){
+    emailCard.addEventListener('click', () => {
+      const email = 'optiqoweb@gmail.com';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      emailCardToast.classList.add('show');
+      setTimeout(() => emailCardToast.classList.remove('show'), 1600);
+    });
+  }
 </script>
 
 </body>
