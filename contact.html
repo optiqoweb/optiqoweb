@@ -163,6 +163,12 @@
   }
   .est-range{font-family:'Space Grotesk',sans-serif; font-size:27px; font-weight:700; letter-spacing:-0.02em;}
   .est-range-usd{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--slate); margin-top:6px;}
+  .est-monthly{margin-top:20px; padding-top:20px; border-top:1px solid var(--line); display:none;}
+  .est-monthly.show{display:block;}
+  .est-monthly .label{margin-bottom:8px;}
+  .est-monthly .est-range{font-size:20px;}
+  .est-monthly .est-range-usd{margin-top:4px;}
+  .est-monthly .per{font-size:13px; font-weight:500; color:var(--slate); margin-left:4px;}
   .est-list{list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:9px; padding-top:20px; border-top:1px solid var(--line);}
   .est-list li{font-size:13px; color:#aab2c5; display:flex; justify-content:space-between; gap:10px;}
   .est-list li span.tick{color:var(--cyan);}
@@ -348,6 +354,13 @@
           </div>
         </div>
 
+        <div class="e-group" id="ongoingGroup">
+          <label class="e-label">Ongoing monthly plan</label>
+          <div class="e-options" id="optOngoing">
+            <label class="e-opt"><input type="checkbox" name="monthly" value="plan" checked><span>Hosting, domain & regular maintenance (signup fee + monthly)</span></label>
+          </div>
+        </div>
+
         <div class="e-group" id="brandGroup">
           <label class="e-label">Branding needs</label>
           <div class="e-options" id="optBrand">
@@ -373,11 +386,16 @@
       </div>
 
       <aside class="estimate-summary">
-        <span class="label">Estimated price</span>
+        <span class="label">Estimated setup fee (one-time)</span>
         <div class="est-range" id="estRangeBDT">৳0 – ৳0</div>
         <div class="est-range-usd" id="estRangeUSD">≈ $0 – $0</div>
+        <div class="est-monthly" id="estMonthlyWrap">
+          <span class="label">Then, monthly</span>
+          <div class="est-range" id="estMonthlyBDT">৳0 – ৳0<span class="per">/mo</span></div>
+          <div class="est-range-usd" id="estMonthlyUSD">≈ $0 – $0/mo</div>
+        </div>
         <ul class="est-list" id="estList"></ul>
-        <p class="est-note">This is a ballpark estimate based on typical projects — we'll confirm exact pricing once we chat.</p>
+        <p class="est-note">This is a ballpark estimate based on typical projects — we'll confirm exact pricing once we chat. The one-time fee covers setup, including a signup fee for hosting/domain/maintenance if selected; the monthly fee below is the ongoing rate for hosting, domain, and regular maintenance.</p>
         <div class="est-actions">
           <button type="button" id="sendWhatsapp" class="btn-primary full">
             Send to WhatsApp
@@ -460,6 +478,7 @@
     <button class="chip">What services do you offer?</button>
     <button class="chip">How long does a project take?</button>
     <button class="chip">Do you do graphic design?</button>
+    <button class="chip">Can you host my site and buy a domain?</button>
     <button class="chip">How can I contact you?</button>
   </div>
   <form class="faq-form" id="faqForm">
@@ -472,9 +491,10 @@
 
 <script>
   const faqData = [
-    { keywords: ['service','offer','what do you do','what can you'], answer: "We cover three things: Web Design & Development, Graphic Design & Branding, and Digital Solutions & Growth." },
+    { keywords: ['service','offer','what do you do','what can you'], answer: "We cover four things: Web Design & Development, Graphic Design & Branding, Digital Solutions & Growth, and Hosting & Domains." },
     { keywords: ['long','time','timeline','turnaround','fast'], answer: "Most small business projects take about 1–2 weeks once the design is approved, depending on scope." },
     { keywords: ['graphic','branding','logo','design'], answer: "Yes — logos, brand identity, social media graphics, and print materials are all part of what we do." },
+    { keywords: ['host','hosting','domain','buy a domain','dns'], answer: "Yes — we register your domain and host the site for you. There's a small one-time signup fee plus a monthly rate that covers hosting, domain, and regular maintenance. It's one of the options in the estimator above." },
     { keywords: ['contact','reach','email','phone','call','whatsapp'], answer: "You can email optiqoweb@gmail.com, message us on WhatsApp at +880 1935-128454, or use the cards above." },
     { keywords: ['price','cost','how much','budget','quote'], answer: "Pricing depends on the project's scope — message us on WhatsApp or email and we'll send a clear quote." },
     { keywords: ['portfolio','work','example','sites','built'], answer: "We've built a Bengali news portal, an e-commerce template, and a photography business site — check the homepage's 'Our Work' section." },
@@ -558,6 +578,8 @@
     seo:    { min: 3000, max: 6000,  label: 'SEO setup' },
     anim:   { min: 4000, max: 8000,  label: 'Custom animation' }
   };
+  const MONTHLY_PLAN = { min: 800, max: 1500, label: 'Hosting, domain & regular maintenance' };
+  const ONGOING_SETUP_FEE = { min: 1500, max: 3000, label: 'Hosting, domain & maintenance signup (one-time)' };
   const BRAND_BASE = {
     logo:   { min: 3000,  max: 6000,  label: 'Logo design' },
     kit:    { min: 10000, max: 18000, label: 'Full brand identity kit' },
@@ -570,9 +592,13 @@
   const siteGroup      = document.getElementById('siteGroup');
   const pagesGroup      = document.getElementById('pagesGroup');
   const featuresGroup   = document.getElementById('featuresGroup');
+  const ongoingGroup    = document.getElementById('ongoingGroup');
   const brandGroup      = document.getElementById('brandGroup');
   const estRangeBDT     = document.getElementById('estRangeBDT');
   const estRangeUSD     = document.getElementById('estRangeUSD');
+  const estMonthlyWrap  = document.getElementById('estMonthlyWrap');
+  const estMonthlyBDT   = document.getElementById('estMonthlyBDT');
+  const estMonthlyUSD   = document.getElementById('estMonthlyUSD');
   const estList         = document.getElementById('estList');
   const estWarn         = document.getElementById('estWarn');
   const estSent         = document.getElementById('estSent');
@@ -610,6 +636,7 @@
 
     siteGroup.style.display = wantsWebsite ? '' : 'none';
     featuresGroup.style.display = wantsWebsite ? '' : 'none';
+    ongoingGroup.style.display = wantsWebsite ? '' : 'none';
     pagesGroup.style.display = (wantsWebsite && site === 'business') ? '' : 'none';
     brandGroup.style.display = wantsBranding ? '' : 'none';
 
@@ -638,11 +665,24 @@
       items.push('Rush timeline (+20%)');
     }
 
+    let monthlyMin = 0, monthlyMax = 0;
+    const wantsMonthly = wantsWebsite && selectedValues('monthly').includes('plan');
+    if(wantsMonthly){
+      monthlyMin = MONTHLY_PLAN.min; monthlyMax = MONTHLY_PLAN.max;
+      min += ONGOING_SETUP_FEE.min; max += ONGOING_SETUP_FEE.max;
+      items.push(ONGOING_SETUP_FEE.label);
+    }
+
     estRangeBDT.textContent = `${fmt(min)} – ${fmt(max)}`;
     estRangeUSD.textContent = `≈ ${fmtUSD(min)} – ${fmtUSD(max)}`;
+    estMonthlyWrap.classList.toggle('show', wantsMonthly);
+    if(wantsMonthly){
+      estMonthlyBDT.innerHTML = `${fmt(monthlyMin)} – ${fmt(monthlyMax)}<span class="per">/mo</span>`;
+      estMonthlyUSD.textContent = `≈ ${fmtUSD(monthlyMin)} – ${fmtUSD(monthlyMax)}/mo`;
+    }
     estList.innerHTML = items.map(i => `<li><span class="tick">✓</span>${i}</li>`).join('');
 
-    return { min, max, items, type, timeline };
+    return { min, max, monthlyMin, monthlyMax, wantsMonthly, items, type, timeline };
   }
 
   function buildMessage(){
@@ -659,7 +699,10 @@
     result.items.forEach(i => { msg += `• ${i}\n`; });
     msg += `Timeline: ${timelineLabel}\n`;
     if(notes) msg += `Notes: ${notes}\n`;
-    msg += `\nEstimated price: ${fmt(result.min)} – ${fmt(result.max)} (${fmtUSD(result.min)} – ${fmtUSD(result.max)})\n`;
+    msg += `\nEstimated setup fee (one-time): ${fmt(result.min)} – ${fmt(result.max)} (${fmtUSD(result.min)} – ${fmtUSD(result.max)})\n`;
+    if(result.wantsMonthly){
+      msg += `Estimated monthly fee (hosting, domain & maintenance): ${fmt(result.monthlyMin)} – ${fmt(result.monthlyMax)}/mo (${fmtUSD(result.monthlyMin)} – ${fmtUSD(result.monthlyMax)}/mo)\n`;
+    }
     msg += `\n(Generated by the instant estimate tool on optiqo's site.)`;
     return msg;
   }
