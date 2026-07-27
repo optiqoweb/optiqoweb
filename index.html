@@ -190,7 +190,7 @@
   .section-head p{margin-top:18px; color:#aab2c5; font-size:16px; line-height:1.7;}
 
   /* SERVICES */
-  .services{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:20px; overflow:hidden;}
+  .services{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:20px; overflow:hidden;}
   .service{
     background:var(--ink); padding:44px 34px; position:relative; transition:background .3s;
   }
@@ -438,6 +438,7 @@
     <div class="strip-item"><b>Web Design</b> &nbsp;& Development</div>
     <div class="strip-item"><b>Graphic Design</b> &nbsp;& Branding</div>
     <div class="strip-item"><b>Digital Solutions</b> &nbsp;& Growth</div>
+    <div class="strip-item"><b>Hosting</b> &nbsp;& Domains, handled</div>
   </div>
 </div>
 
@@ -518,6 +519,17 @@
           <li>SEO basics & setup</li>
           <li>Content updates</li>
           <li>Performance check-ins</li>
+        </ul>
+      </div>
+      <div class="service">
+        <span class="num">04</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14.5 14.5 0 010 18M12 3a14.5 14.5 0 000 18"/></svg>
+        <h3>Hosting & Domains</h3>
+        <p>We host your site and can register your domain for you, so there's nothing extra to set up or manage on your end.</p>
+        <ul>
+          <li>Domain name registration</li>
+          <li>Website hosting, handled for you</li>
+          <li>Renewals & upkeep, no hassle</li>
         </ul>
       </div>
     </div>
@@ -637,6 +649,7 @@
     <button class="chip">What services do you offer?</button>
     <button class="chip">How long does a project take?</button>
     <button class="chip">Do you do graphic design?</button>
+    <button class="chip">Can you host my site and buy a domain?</button>
     <button class="chip">How can I contact you?</button>
   </div>
   <form class="faq-form" id="faqForm">
@@ -649,9 +662,10 @@
 
 <script>
   const faqData = [
-    { keywords: ['service','offer','what do you do','what can you'], answer: "We cover three things: Web Design & Development, Graphic Design & Branding, and Digital Solutions & Growth." },
+    { keywords: ['service','offer','what do you do','what can you'], answer: "We cover four things: Web Design & Development, Graphic Design & Branding, Digital Solutions & Growth, and Hosting & Domains." },
     { keywords: ['long','time','timeline','turnaround','fast'], answer: "Most small business projects take about 1–2 weeks once the design is approved, depending on scope." },
     { keywords: ['graphic','branding','logo','design'], answer: "Yes — logos, brand identity, social media graphics, and print materials are all part of what we do." },
+    { keywords: ['host','hosting','domain','buy a domain','dns'], answer: "Yes — we can register your domain and host the site for you, so you don't have to deal with any of that yourself." },
     { keywords: ['contact','reach','email','phone','call','whatsapp'], answer: "You can email optiqoweb@gmail.com, message us on WhatsApp at +880 1935-128454, or visit the Contact page." },
     { keywords: ['price','cost','how much','budget','quote'], answer: "Pricing depends on the project's scope — message us on WhatsApp or email and we'll send a clear quote." },
     { keywords: ['portfolio','work','example','sites','built'], answer: "Check the 'Our Work' section — we've built a Bengali news portal, an e-commerce template, and a photography business site." },
