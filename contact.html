@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){
+    try{
+      if(localStorage.getItem('theme') === 'light'){
+        document.documentElement.setAttribute('data-theme','light');
+      }
+    }catch(e){}
+  })();
+</script>
+<title>Contact — Optiqo</title>
+<meta name="description" content="Get in touch with Optiqo — email, phone, or WhatsApp for your web and graphic design project.">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Optiqo">
+<meta property="og:title" content="Contact — Optiqo">
+<meta property="og:description" content="Reach Optiqo by email, phone, or WhatsApp for your web and graphic design project.">
+<meta property="og:image" content="logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Contact — Optiqo">
+<meta name="twitter:description" content="Reach Optiqo by email, phone, or WhatsApp.">
+<meta name="twitter:image" content="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080b14;
+    --blue:#2f6fed;
+    --cyan:#38bdf8;
+    --paper:#f5f7fb;
+    --slate:#6b7690;
+    --line:rgba(255,255,255,0.09);
+  }
+  html[data-theme="light"]{
+    --ink:#f6f7fb;
+    --paper:#0b1120;
+    --slate:#5a6478;
+    --line:rgba(11,17,32,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{color-scheme:dark;}
+  html[data-theme="light"]{color-scheme:light;}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;
+    min-height:100vh; display:flex; flex-direction:column;
+    transition:background .3s ease, color .3s ease;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px; width:100%;}
+
+  header{padding:26px 0; border-bottom:1px solid var(--line);}
+  .logo{display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; letter-spacing:-0.02em; flex-shrink:0;}
+  .logo-img{height:64px; width:auto; aspect-ratio:1000/400; object-fit:contain; flex-shrink:0; display:block;}
+  .logo-img.logo-light{display:none;}
+  html[data-theme="light"] .logo-img.logo-dark{display:none;}
+  html[data-theme="light"] .logo-img.logo-light{display:block;}
+  .logo .dot{width:8px;height:8px;background:var(--cyan); border-radius:2px;}
+  .back{font-size:13px; color:#aab2c5; display:inline-flex; align-items:center; gap:6px; transition:color .2s;}
+  .back:hover{color:#fff;}
+  .head-row{display:flex; justify-content:space-between; align-items:center;}
+  .head-actions{display:flex; align-items:center; gap:16px;}
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:9px; border:1px solid var(--line);
+    background:transparent; color:var(--paper); cursor:pointer; flex-shrink:0;
+    transition:border-color .25s, color .25s, background .25s;
+  }
+  .theme-toggle:hover{border-color:var(--cyan); color:var(--cyan); background:rgba(56,189,248,0.08);}
+  .theme-toggle .icon-moon{display:none;}
+  html[data-theme="light"] .theme-toggle .icon-sun{display:none;}
+  html[data-theme="light"] .theme-toggle .icon-moon{display:block;}
+
+  @media (max-width:480px){
+    .logo-img{height:38px;}
+    header{padding:16px 0;}
+    .wrap{padding:0 18px;}
+    .head-actions{gap:10px;}
+    .theme-toggle{width:34px; height:34px;}
+    .theme-toggle svg{width:16px; height:16px;}
+    .back{font-size:12px; white-space:nowrap; gap:4px;}
+  }
+
+  main{flex:1; display:flex; align-items:center; padding:64px 0;}
+  .hero-bg{
+    position:fixed; inset:0; z-index:-1; overflow:hidden;
+    background:
+      radial-gradient(ellipse 700px 500px at 82% 10%, rgba(47,111,237,0.132), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 10% 90%, rgba(56,189,248,0.060), transparent 60%);
+  }
+  .hero-bg .blob{
+    position:absolute; border-radius:50%; filter:blur(90px);
+    animation:blobDrift ease-in-out infinite;
+    will-change:transform;
+  }
+  .hero-bg .blob-a{
+    width:520px; height:520px; top:-140px; right:-60px;
+    background:radial-gradient(circle, rgba(47,111,237,0.45), transparent 70%);
+    animation-duration:22s;
+  }
+  .hero-bg .blob-b{
+    width:460px; height:460px; bottom:-140px; left:-90px;
+    background:radial-gradient(circle, rgba(56,189,248,0.32), transparent 70%);
+    animation-duration:28s; animation-delay:-9s;
+  }
+  @keyframes blobDrift{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    33%{ transform:translate(46px,34px) scale(1.1); }
+    66%{ transform:translate(-36px,-24px) scale(0.94); }
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.12em;
+    color:var(--cyan); text-transform:uppercase; margin-bottom:20px; display:block;
+  }
+  h1{font-size:clamp(32px,5vw,52px); font-weight:700; letter-spacing:-0.03em; max-width:600px; line-height:1.08;}
+  .lead{margin-top:20px; max-width:480px; color:#aab2c5; font-size:16.5px; line-height:1.7;}
+
+  .cards{margin-top:52px; display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .card{
+    border:1px solid var(--line); border-radius:16px; padding:26px 26px;
+    background:rgba(255,255,255,0.015); transition:border-color .25s, transform .25s, background .25s;
+  }
+  .card.link{display:block;}
+  .card.link:hover{border-color:rgba(56,189,248,0.4); transform:translateY(-3px); background:rgba(47,111,237,0.05);}
+  .card .label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:14px; display:block;
+  }
+  .card .value{font-size:16px; font-weight:600; margin-bottom:4px; position:relative; display:inline-block;}
+  .card .value + .value{margin-top:8px;}
+  .card.wide{grid-column:1 / -1;}
+  .copy-toast{
+    position:absolute; left:0; top:-32px; background:var(--cyan); color:#05070d;
+    font-size:11px; font-weight:600; padding:4px 10px; border-radius:100px;
+    opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; transform:translateY(4px);
+    white-space:nowrap;
+  }
+  .copy-toast.show{opacity:1; transform:translateY(0);}
+  .card a.num-link{
+    display:block; width:fit-content; border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .card a.num-link:hover{color:var(--cyan); border-color:var(--cyan);}
+
+  footer{border-top:1px solid var(--line); padding:24px 0; font-size:13px; color:var(--slate);}
+  .foot-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:640px){
+    .cards{grid-template-columns:1fr;}
+  }
+
+  .btn-primary{
+    background:linear-gradient(100deg, var(--blue), var(--cyan));
+    color:#05070d; font-weight:600; font-size:15px;
+    padding:15px 28px; border:none; border-radius:10px; display:inline-flex; align-items:center; gap:8px;
+    cursor:pointer; font-family:inherit; transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(47,111,237,0.55);}
+  .btn-ghost{
+    font-size:15px; padding:15px 6px; color:#e7ebf3; background:transparent; border:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px; font-family:inherit; transition:border-color .2s;
+  }
+
+  /* ESTIMATOR */
+  .wrap.wide{max-width:1180px;}
+  main.estimate-main{align-items:flex-start; padding:56px 0 90px;}
+  .alt-contact{margin-top:70px; padding-top:46px; border-top:1px solid var(--line);}
+  .alt-contact > p{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); margin-bottom:24px;}
+
+  .estimator{
+    margin-top:48px; display:grid; grid-template-columns:1fr 340px; gap:36px; align-items:start;
+  }
+  .estimate-form{display:flex; flex-direction:column; gap:30px;}
+  .e-group{display:flex; flex-direction:column; gap:12px;}
+  .e-label{font-size:13px; font-weight:600; color:#dbe1ee; letter-spacing:-0.01em;}
+  .e-sublabel{font-size:11.5px; font-weight:600; color:var(--slate); letter-spacing:.02em; text-transform:uppercase; margin-top:6px;}
+  .e-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .e-row .e-field{flex:1; min-width:180px; display:flex; flex-direction:column; gap:8px;}
+
+  .estimate-form input[type="text"],
+  .estimate-form input[type="email"],
+  .estimate-form input[type="tel"],
+  .estimate-form textarea{
+    background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:10px;
+    padding:13px 16px; color:var(--paper); font-family:inherit; font-size:14.5px;
+    transition:border-color .2s, background .2s; width:100%; resize:vertical;
+  }
+  .estimate-form input:focus, .estimate-form textarea:focus{outline:none; border-color:var(--cyan); background:rgba(255,255,255,0.05);}
+  .estimate-form input::placeholder, .estimate-form textarea::placeholder{color:var(--slate);}
+  .estimate-form input.invalid, .estimate-form textarea.invalid{border-color:#ef4a6c;}
+
+  .e-options{display:flex; flex-wrap:wrap; gap:10px;}
+  .e-opt{
+    position:relative; display:flex; align-items:center; gap:9px;
+    border:1px solid var(--line); border-radius:10px; padding:11px 16px 11px 40px;
+    background:rgba(255,255,255,0.015); cursor:pointer; transition:border-color .2s, background .2s, transform .2s;
+    font-size:13.5px; color:#c3cad9;
+  }
+  .e-opt:hover{border-color:rgba(56,189,248,0.35);}
+  .e-opt input{position:absolute; opacity:0; width:0; height:0;}
+  .e-opt span{position:relative;}
+  .e-opt::before{
+    content:''; position:absolute; left:14px; top:50%; transform:translateY(-50%) scale(1);
+    width:16px; height:16px; border-radius:5px; border:1.5px solid rgba(255,255,255,0.28);
+    background:transparent; transition:background .22s, border-color .22s, transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .e-opt::after{
+    content:''; position:absolute; left:19.5px; top:50%;
+    width:5px; height:9px; border:solid #05070d; border-width:0 2px 2px 0;
+    transform:translateY(-65%) rotate(45deg) scale(0);
+    transition:transform .28s cubic-bezier(.34,1.56,.64,1) .04s;
+  }
+  .e-opt:has(input:checked){border-color:var(--cyan); background:rgba(56,189,248,0.1); color:#fff; animation:optPop .32s ease;}
+  .e-opt:has(input:checked)::before{background:linear-gradient(100deg, var(--blue), var(--cyan)); border-color:transparent; transform:translateY(-50%) scale(1.08);}
+  .e-opt:has(input:checked)::after{transform:translateY(-65%) rotate(45deg) scale(1);}
+  @keyframes optPop{ 0%{transform:scale(1);} 45%{transform:scale(1.035);} 100%{transform:scale(1);} }
+  @media (prefers-reduced-motion: reduce){
+    .e-opt, .e-opt::before, .e-opt::after{animation:none !important; transition:none !important;}
+  }
+
+  #optSite, #optFeaturesCore, #optFeaturesUtil, #optBrandCore, #optBrandExtra{display:grid; grid-template-columns:repeat(auto-fill, minmax(170px,1fr));}
+  #optSite .e-opt, #optFeaturesCore .e-opt, #optFeaturesUtil .e-opt, #optBrandCore .e-opt, #optBrandExtra .e-opt{
+    flex-direction:column; align-items:flex-start; gap:1px; padding:12px 16px 12px 40px;
+  }
+  #optSite .e-opt::before, #optFeaturesCore .e-opt::before, #optFeaturesUtil .e-opt::before, #optBrandCore .e-opt::before, #optBrandExtra .e-opt::before{top:14px; transform:scale(1); transform-origin:center;}
+  #optSite .e-opt:has(input:checked)::before, #optFeaturesCore .e-opt:has(input:checked)::before, #optFeaturesUtil .e-opt:has(input:checked)::before, #optBrandCore .e-opt:has(input:checked)::before, #optBrandExtra .e-opt:has(input:checked)::before{transform:scale(1.08);}
+  #optSite .e-opt::after, #optFeaturesCore .e-opt::after, #optFeaturesUtil .e-opt::after, #optBrandCore .e-opt::after, #optBrandExtra .e-opt::after{top:18.5px; transform:rotate(45deg) scale(0); transform-origin:center;}
+  #optSite .e-opt:has(input:checked)::after, #optFeaturesCore .e-opt:has(input:checked)::after, #optFeaturesUtil .e-opt:has(input:checked)::after, #optBrandCore .e-opt:has(input:checked)::after, #optBrandExtra .e-opt:has(input:checked)::after{transform:rotate(45deg) scale(1);}
+  .e-opt-title{font-weight:600;}
+  .e-opt-desc{font-size:11px; font-weight:400; color:var(--slate); line-height:1.35;}
+  .e-opt:has(input:checked) .e-opt-desc{color:rgba(255,255,255,0.65);}
+  html[data-theme="light"] .e-opt-desc{color:#6b7590;}
+
+  .estimate-summary{
+    position:sticky; top:24px;
+    border:1px solid var(--line); border-radius:18px; padding:28px 26px;
+    background:rgba(255,255,255,0.02);
+  }
+  .estimate-summary .label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--blue); display:block; margin-bottom:12px;
+  }
+  .est-range{font-family:'Space Grotesk',sans-serif; font-size:27px; font-weight:700; letter-spacing:-0.02em;}
+  .est-range-usd{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--slate); margin-top:6px;}
+  .est-monthly{margin-top:20px; padding-top:20px; border-top:1px solid var(--line); display:none;}
+  .est-monthly.show{display:block;}
+  .est-monthly .label{margin-bottom:8px;}
+  .est-monthly .est-range{font-size:20px;}
+  .est-monthly .est-range-usd{margin-top:4px;}
+  .est-monthly .per{font-size:13px; font-weight:500; color:var(--slate); margin-left:4px;}
+  .est-list{list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:9px; padding-top:20px; border-top:1px solid var(--line);}
+  .est-list li{font-size:13px; color:#aab2c5; display:flex; justify-content:space-between; align-items:baseline; gap:12px;}
+  .est-list li span.tick{color:var(--cyan); margin-right:6px;}
+  .est-item-left{display:flex; align-items:baseline; flex:1; min-width:0;}
+  .est-item-price{color:#dbe1ee; font-weight:600; white-space:nowrap; flex-shrink:0;}
+  .est-list.empty{display:none;}
+  .est-note{font-size:12px; color:var(--slate); line-height:1.6; margin-top:18px;}
+  .est-actions{margin-top:22px; display:flex; flex-direction:column; gap:10px;}
+  .btn-primary.full, .btn-ghost.full{width:100%; justify-content:center; border-radius:10px;}
+  .btn-ghost.full{border:1px solid var(--line); padding:14px 6px;}
+  .btn-ghost.full:hover{border-color:var(--cyan);}
+  .est-warn{font-size:12px; color:#ef4a6c; margin-top:10px; display:none;}
+  .est-warn.show{display:block;}
+  .est-sent{font-size:12px; color:#4ade80; margin-top:10px; display:none;}
+  .est-sent.show{display:block;}
+
+  @media (max-width:860px){
+    .estimator{grid-template-columns:1fr;}
+    .estimate-summary{position:static;}
+  }
+
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:60;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; color:#05070d;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px -6px rgba(37,211,102,0.55);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover{transform:translateY(-3px) scale(1.04); box-shadow:0 14px 32px -6px rgba(37,211,102,0.7);}
+
+  .top-btn{
+    position:fixed; bottom:96px; right:26px; z-index:60;
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(11,17,32,0.85); backdrop-filter:blur(10px); color:var(--paper);
+    display:none; align-items:center; justify-content:center; cursor:pointer;
+    transition:border-color .25s;
+  }
+  .top-btn.show{display:flex;}
+  .top-btn:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  /* FAQ CHAT WIDGET */
+  .faq-fab{
+    position:fixed; bottom:26px; left:26px; z-index:60;
+    width:58px; height:58px; border-radius:50%;
+    background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d;
+    border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 10px 26px -6px rgba(47,111,237,0.55);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .faq-fab:hover{transform:translateY(-3px) scale(1.04);}
+
+  .faq-widget{
+    position:fixed; bottom:100px; left:26px; z-index:61;
+    width:340px; max-width:calc(100vw - 52px); height:480px; max-height:calc(100vh - 140px);
+    background:#0d1424; border:1px solid rgba(255,255,255,0.1); border-radius:28px;
+    display:flex; flex-direction:column; overflow:hidden;
+    box-shadow:0 28px 60px -14px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.06);
+    opacity:0; pointer-events:none; transform:translateY(16px) scale(.96);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .faq-widget.open{opacity:1; pointer-events:auto; transform:translateY(0) scale(1);}
+  .faq-head{
+    padding:18px 20px; border-bottom:1px solid var(--line);
+    background:linear-gradient(100deg, var(--blue), var(--cyan));
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .faq-head-info{display:flex; align-items:center; gap:10px;}
+  .faq-avatar{
+    width:34px; height:34px; border-radius:50%; background:rgba(5,7,13,0.18);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#05070d;
+  }
+  .faq-head-text{display:flex; flex-direction:column; line-height:1.25;}
+  .faq-head-text span{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14.5px; color:#05070d;}
+  .faq-head-text small{font-size:11px; color:rgba(5,7,13,0.65); font-weight:500;}
+  .faq-head button{
+    background:rgba(5,7,13,0.14); border:none; color:#05070d; font-size:18px; cursor:pointer;
+    line-height:1; width:28px; height:28px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; transition:background .2s;
+  }
+  .faq-head button:hover{background:rgba(5,7,13,0.28);}
+  .faq-body{flex:1; overflow-y:auto; padding:18px 20px; display:flex; flex-direction:column; gap:12px; background:#0d1424;}
+  .faq-msg{
+    font-size:13.5px; line-height:1.55; padding:11px 15px; border-radius:20px; max-width:86%;
+  }
+  .faq-msg.bot{background:rgba(255,255,255,0.07); color:#dbe1ee; align-self:flex-start; border-bottom-left-radius:6px;}
+  .faq-typing{
+    display:flex; gap:5px; align-self:flex-start; padding:13px 16px;
+    background:rgba(255,255,255,0.07); border-radius:20px; border-bottom-left-radius:6px;
+  }
+  .faq-typing span{
+    width:6px; height:6px; border-radius:50%; background:var(--cyan);
+    animation:faqTypingBounce 1.1s ease-in-out infinite;
+  }
+  .faq-typing span:nth-child(2){animation-delay:.15s;}
+  .faq-typing span:nth-child(3){animation-delay:.3s;}
+  @keyframes faqTypingBounce{ 0%,60%,100%{transform:translateY(0); opacity:.5;} 30%{transform:translateY(-4px); opacity:1;} }
+  @media (prefers-reduced-motion: reduce){ .faq-typing span{animation:none;} }
+  .faq-msg.user{background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d; align-self:flex-end; border-bottom-right-radius:6px; font-weight:500;}
+  .faq-chips{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:0 20px 14px;
+  }
+  .faq-chips .chip{
+    font-size:11.5px; padding:9px 10px; border-radius:14px; border:1px solid transparent;
+    background:rgba(255,255,255,0.06); color:#c3cad9; cursor:pointer; text-align:center;
+    line-height:1.3; overflow:hidden; text-overflow:ellipsis;
+    transition:background .2s, color .2s, transform .15s;
+  }
+  .faq-chips .chip:hover{background:rgba(56,189,248,0.14); color:var(--cyan); transform:translateY(-1px);}
+  .faq-form{display:flex; gap:8px; padding:16px 18px; border-top:1px solid var(--line);}
+  .faq-form input{
+    flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:100px;
+    padding:11px 16px; color:#fff; font-size:13px; font-family:'Inter',sans-serif;
+  }
+  .faq-form input:focus{outline:none; border-color:var(--cyan);}
+  .faq-form input::placeholder{color:var(--slate);}
+  .faq-form button{
+    width:40px; height:40px; border-radius:50%; border:none; flex-shrink:0;
+    background:linear-gradient(100deg, var(--blue), var(--cyan)); color:#05070d;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 6px 14px -4px rgba(47,111,237,0.55);
+  }
+
+  @media (max-width:480px){
+    .faq-widget{left:16px; bottom:94px; width:calc(100vw - 32px); height:min(520px, calc(100vh - 150px));}
+    .faq-fab{left:16px;}
+  }
+
+  /* LIGHT THEME OVERRIDES (wa-float and gradients stay brand-colored on purpose) */
+  html[data-theme="light"] header{border-bottom-color:var(--line);}
+  html[data-theme="light"] .back{color:#4a5468;}
+  html[data-theme="light"] .back:hover{color:#0b1120;}
+  html[data-theme="light"] .lead{color:#4a5468;}
+  html[data-theme="light"] .e-label{color:#1b2333;}
+  html[data-theme="light"] .e-opt{background:rgba(11,17,32,0.02); color:#29334a;}
+  html[data-theme="light"] .estimate-form input[type="text"],
+  html[data-theme="light"] .estimate-form input[type="email"],
+  html[data-theme="light"] .estimate-form input[type="tel"],
+  html[data-theme="light"] .estimate-form textarea{background:rgba(11,17,32,0.03); color:#0b1120;}
+  html[data-theme="light"] .estimate-summary{background:rgba(11,17,32,0.02);}
+  html[data-theme="light"] .est-note{color:#5a6478;}
+  html[data-theme="light"] .est-range-usd{color:#5a6478;}
+  html[data-theme="light"] .est-item-price{color:#0b1120;}
+  html[data-theme="light"] .card{background:rgba(11,17,32,0.02);}
+  html[data-theme="light"] .value{color:#0b1120;}
+  html[data-theme="light"] .btn-ghost{color:#1c2536;}
+  html[data-theme="light"] .alt-contact > p{color:#5a6478;}
+  html[data-theme="light"] footer{color:#5a6478;}
+  html[data-theme="light"] .top-btn{background:rgba(255,255,255,0.9);}
+  html[data-theme="light"] .faq-widget{background:#ffffff; border-color:rgba(11,17,32,0.1); box-shadow:0 28px 60px -14px rgba(11,17,32,0.18), 0 0 0 1px rgba(56,189,248,0.08);}
+  html[data-theme="light"] .faq-body{background:#ffffff;}
+  html[data-theme="light"] .faq-msg.bot{background:rgba(11,17,32,0.06); color:#1b2333;}
+  html[data-theme="light"] .faq-chips .chip{background:rgba(11,17,32,0.05); color:#29334a;}
+  html[data-theme="light"] .faq-chips .chip:hover{background:rgba(56,189,248,0.16); color:var(--blue);}
+  html[data-theme="light"] .faq-form input{background:rgba(11,17,32,0.04); color:#0b1120;}
+
+/* PAGE LOADER */
+#pageLoader{
+  position:fixed; inset:0; z-index:999; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:22px;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+#pageLoader.hide{opacity:0; visibility:hidden; pointer-events:none;}
+.loader-ring{
+  width:64px; height:64px; border-radius:50%;
+  background:conic-gradient(from 0deg, var(--blue), var(--cyan), transparent 78%);
+  -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
+  mask:radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
+  animation:loaderSpin .9s linear infinite;
+}
+@keyframes loaderSpin{ to{ transform:rotate(360deg); } }
+.loader-word{
+  font-weight:800; font-size:15px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--paper); opacity:.85;
+  animation:loaderPulse 1.6s ease-in-out infinite;
+}
+@keyframes loaderPulse{ 0%,100%{opacity:.4;} 50%{opacity:.95;} }
+@media (prefers-reduced-motion: reduce){
+  .loader-ring{animation:none; border:3px solid var(--cyan); background:none;}
+  .loader-word{animation:none;}
+}
+
+/* BUTTON LOADING STATE */
+.btn-primary, .btn-ghost{ position:relative; }
+.btn-spin{
+  display:none; width:16px; height:16px; border-radius:50%;
+  border:2.5px solid rgba(255,255,255,0.35); border-top-color:#fff;
+  animation:btnSpin .6s linear infinite; margin-right:8px; flex-shrink:0;
+}
+.btn-ghost .btn-spin{border:2.5px solid rgba(255,255,255,0.2); border-top-color:var(--cyan);}
+button.is-loading .btn-spin{display:inline-block;}
+button.is-loading .btn-label-text{opacity:.85;}
+button.is-loading{pointer-events:none; opacity:.9;}
+@keyframes btnSpin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .btn-spin{animation:none;} }
+</style>
+</head>
+<body>
+<div id="pageLoader"><div class="loader-ring"></div><div class="loader-word">Optiqo</div></div>
+
+<div class="hero-bg"><span class="blob blob-a"></span><span class="blob blob-b"></span></div>
+
+<header>
+  <div class="wrap head-row">
+    <div class="logo">
+      <img src="logo-dark.png" alt="Optiqo" class="logo-img logo-dark">
+      <img src="logo-light.png" alt="Optiqo" class="logo-img logo-light">
+    </div>
+    <div class="head-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a href="index.html" class="back">&larr; Back to home</a>
+    </div>
+  </div>
+</header>
+
+<main class="estimate-main">
+  <div class="wrap wide">
+    <span class="eyebrow">Start a project</span>
+    <h1>Get an instant estimate.</h1>
+    <p class="lead">Answer a few quick questions and we'll work out a ballpark price on the spot — then send it straight to us on WhatsApp or email, no typing required.</p>
+
+    <div class="estimator">
+      <div class="estimate-form">
+        <div class="e-group">
+          <div class="e-row">
+            <div class="e-field">
+              <label class="e-label" for="estName">Your name</label>
+              <input type="text" id="estName" placeholder="e.g. Rafiq Ahmed">
+            </div>
+            <div class="e-field">
+              <label class="e-label" for="estPhone">Phone / WhatsApp number</label>
+              <input type="tel" id="estPhone" placeholder="e.g. 01935-128454">
+            </div>
+            <div class="e-field">
+              <label class="e-label" for="estContact">Email (optional)</label>
+              <input type="email" id="estContact" placeholder="e.g. you@email.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="e-group">
+          <label class="e-label">What do you need?</label>
+          <div class="e-options" id="optType">
+            <label class="e-opt"><input type="radio" name="type" value="website" checked><span>Website</span></label>
+            <label class="e-opt"><input type="radio" name="type" value="branding"><span>Graphic design / branding</span></label>
+            <label class="e-opt"><input type="radio" name="type" value="both"><span>Both</span></label>
+          </div>
+        </div>
+
+        <div class="e-group" id="siteGroup">
+          <label class="e-label">Website type</label>
+          <div class="e-options" id="optSite">
+            <label class="e-opt"><input type="radio" name="site" value="landing" checked><span class="e-opt-title">Simple 1-page site</span><small class="e-opt-desc">One scrolling page, all info together</small></label>
+            <label class="e-opt"><input type="radio" name="site" value="business"><span class="e-opt-title">Multi-page site (for a business)</span><small class="e-opt-desc">Separate pages: home, about, services, etc.</small></label>
+            <label class="e-opt"><input type="radio" name="site" value="ecommerce"><span class="e-opt-title">Online shop (sell products)</span><small class="e-opt-desc">Product listings, cart &amp; checkout</small></label>
+          </div>
+        </div>
+
+        <div class="e-group" id="pagesGroup">
+          <label class="e-label">How many pages?</label>
+          <div class="e-options" id="optPages">
+            <label class="e-opt"><input type="radio" name="pages" value="small" checked><span>1–3 pages</span></label>
+            <label class="e-opt"><input type="radio" name="pages" value="medium"><span>4–7 pages</span></label>
+            <label class="e-opt"><input type="radio" name="pages" value="large"><span>8+ pages</span></label>
+          </div>
+        </div>
+
+        <div class="e-group" id="featuresGroup">
+          <label class="e-label">Extra features</label>
+          <div class="e-sublabel">Core</div>
+          <div class="e-options" id="optFeaturesCore">
+            <label class="e-opt"><input type="checkbox" name="feat" value="cms"><span class="e-opt-title">Self-editable content (CMS)</span><small class="e-opt-desc">Edit text/images yourself, no coding</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="sheets"><span class="e-opt-title">Google Sheets–backed data</span><small class="e-opt-desc">Update site content by editing a sheet</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="lang"><span class="e-opt-title">Bengali + English</span><small class="e-opt-desc">Full site available in both languages</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="seo"><span class="e-opt-title">SEO setup</span><small class="e-opt-desc">Helps your site show up on Google</small></label>
+          </div>
+          <div class="e-sublabel">Site utilities</div>
+          <div class="e-options" id="optFeaturesUtil">
+            <label class="e-opt"><input type="checkbox" name="feat" value="theme"><span class="e-opt-title">Dark/light theme toggle</span><small class="e-opt-desc">Visitors can switch site appearance</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="wa"><span class="e-opt-title">WhatsApp floating button</span><small class="e-opt-desc">One-tap chat button on every page</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="totop"><span class="e-opt-title">Back-to-top button</span><small class="e-opt-desc">Quick jump to the top of the page</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="faq"><span class="e-opt-title">FAQ chat widget</span><small class="e-opt-desc">Auto-answers common visitor questions</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="copy"><span class="e-opt-title">Copy-to-clipboard contact card</span><small class="e-opt-desc">One tap to copy your email/phone</small></label>
+            <label class="e-opt"><input type="checkbox" name="feat" value="search"><span class="e-opt-title">Search bar</span><small class="e-opt-desc">Visitors can search site content</small></label>
+          </div>
+        </div>
+
+        <div class="e-group" id="ongoingGroup">
+          <label class="e-label">Ongoing monthly plan</label>
+          <div class="e-options" id="optOngoing">
+            <label class="e-opt"><input type="checkbox" name="monthly" value="plan" checked><span>Hosting, domain & regular maintenance (signup fee + monthly)</span></label>
+          </div>
+        </div>
+
+        <div class="e-group" id="brandGroup">
+          <label class="e-label">Branding needs</label>
+          <div class="e-sublabel">Core (see our Work page)</div>
+          <div class="e-options" id="optBrandCore">
+            <label class="e-opt"><input type="checkbox" name="brand" value="logo"><span class="e-opt-title">Logo Design</span><small class="e-opt-desc">Just the logo mark/wordmark</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="kit"><span class="e-opt-title">Brand Identity Kit</span><small class="e-opt-desc">Logo + colors, fonts &amp; guidelines</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="social"><span class="e-opt-title">Social Media Pack</span><small class="e-opt-desc">Reusable post &amp; story templates</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="card"><span class="e-opt-title">Business Card</span><small class="e-opt-desc">Front &amp; back, print-ready</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="banner"><span class="e-opt-title">Banner / Poster</span><small class="e-opt-desc">One large banner or poster design</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="packaging"><span class="e-opt-title">Packaging / Label</span><small class="e-opt-desc">Product box or label design</small></label>
+          </div>
+          <div class="e-sublabel">Extras</div>
+          <div class="e-options" id="optBrandExtra">
+            <label class="e-opt"><input type="checkbox" name="brand" value="letterhead"><span class="e-opt-title">Letterhead &amp; Stationery</span><small class="e-opt-desc">Letterhead, envelope &amp; invoice look</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="flyer"><span class="e-opt-title">Flyer / Leaflet</span><small class="e-opt-desc">Small handout for promotions</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="menu"><span class="e-opt-title">Menu Design</span><small class="e-opt-desc">Menu layout for restaurants/cafes</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="signboard"><span class="e-opt-title">Signboard / Shop Sign</span><small class="e-opt-desc">Design for your shop's signboard</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="fbpack"><span class="e-opt-title">Facebook Cover &amp; Profile Pack</span><small class="e-opt-desc">Just cover photo + profile picture</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="invite"><span class="e-opt-title">Invitation / Greeting Card</span><small class="e-opt-desc">For events, weddings &amp; greetings</small></label>
+            <label class="e-opt"><input type="checkbox" name="brand" value="thumb"><span class="e-opt-title">YouTube Thumbnail Pack</span><small class="e-opt-desc">A batch of video thumbnail designs</small></label>
+          </div>
+        </div>
+
+        <div class="e-group">
+          <label class="e-label">Timeline</label>
+          <div class="e-options" id="optTimeline">
+            <label class="e-opt"><input type="radio" name="timeline" value="standard" checked><span>Standard (1–2 weeks)</span></label>
+            <label class="e-opt"><input type="radio" name="timeline" value="rush"><span>Rush (under a week)</span></label>
+          </div>
+        </div>
+
+        <div class="e-group">
+          <label class="e-label" for="estNotes">Anything else? (optional)</label>
+          <textarea id="estNotes" rows="3" placeholder="Tell us a bit more about your project..."></textarea>
+        </div>
+      </div>
+
+      <aside class="estimate-summary">
+        <span class="label">Estimated setup fee (one-time)</span>
+        <div class="est-range" id="estRangeBDT">৳0 – ৳0</div>
+        <div class="est-range-usd" id="estRangeUSD">≈ $0 – $0</div>
+        <div class="est-monthly" id="estMonthlyWrap">
+          <span class="label">Then, monthly</span>
+          <div class="est-range" id="estMonthlyBDT">৳0 – ৳0<span class="per">/mo</span></div>
+          <div class="est-range-usd" id="estMonthlyUSD">≈ $0 – $0/mo</div>
+        </div>
+        <div class="est-monthly show" style="margin-top:16px; padding-top:16px;">
+          <span class="label">Estimated delivery</span>
+          <div class="est-range" id="estDelivery" style="font-size:18px;">–</div>
+        </div>
+        <ul class="est-list" id="estList"></ul>
+        <p class="est-note">This is a ballpark estimate, not a fixed price — final pricing is negotiable and we'll confirm exact numbers once we chat. The one-time fee covers setup, including a signup fee for hosting/domain/maintenance if selected; the monthly fee below is the ongoing rate for hosting, domain, and regular maintenance.</p>
+        <p class="est-note">Usually 50% advance to start the work, and 50% on delivery.</p>
+        <div class="est-actions">
+          <button type="button" id="sendWhatsapp" class="btn-primary full">
+            <span class="btn-spin"></span><span class="btn-label-text">Send to WhatsApp</span>
+          </button>
+          <button type="button" id="sendEmail" class="btn-ghost full">
+            <span class="btn-spin"></span><span class="btn-label-text">Send via email</span>
+          </button>
+        </div>
+        <p class="est-warn" id="estWarn">Please add your name and email/WhatsApp number first.</p>
+        <p class="est-sent" id="estSent">Opening now — just hit send on the other end!</p>
+      </aside>
+    </div>
+
+    <div class="alt-contact">
+      <p>Prefer to reach us directly instead?</p>
+      <div class="cards">
+        <a class="card link wide" href="mailto:optiqoweb@gmail.com" id="emailCard">
+          <span class="label">Email</span>
+          <div class="value">optiqoweb@gmail.com<span class="copy-toast" id="emailCardToast">Copied!</span></div>
+        </a>
+        <div class="card">
+          <span class="label">Phone</span>
+          <a class="value num-link" href="tel:+8801935128454">+880 1935-128454</a>
+          <a class="value num-link" href="tel:+8801742316691">+880 1742-316691</a>
+        </div>
+        <div class="card">
+          <span class="label">WhatsApp</span>
+          <a class="value num-link" href="https://wa.me/8801935128454" target="_blank" rel="noopener">+880 1935-128454</a>
+          <a class="value num-link" href="https://wa.me/8801742316691" target="_blank" rel="noopener">+880 1742-316691</a>
+        </div>
+        <a class="card link" href="https://facebook.com/optiqo" target="_blank" rel="noopener">
+          <span class="label">Facebook</span>
+          <div class="value">@optiqo</div>
+        </a>
+        <a class="card link" href="https://instagram.com/optiqo" target="_blank" rel="noopener">
+          <span class="label">Instagram</span>
+          <div class="value">@optiqo</div>
+        </a>
+        <div class="card">
+          <span class="label">Response Time</span>
+          <div class="value">Usually within a few hours</div>
+        </div>
+        <div class="card">
+          <span class="label">Office Hours</span>
+          <div class="value">Sat–Thu, 9 AM–9 PM</div>
+          <div class="value">Friday: Closed</div>
+        </div>
+        <div class="card">
+          <span class="label">Location</span>
+          <div class="value">Jashore, Bangladesh. (Remote Clients Worldwide)</div>
+        </div>
+        <div class="card">
+          <span class="label">Payment Methods</span>
+          <div class="value">bKash, Nagad, Bank Transfer</div>
+        </div>
+        <div class="card">
+          <span class="label">Preferred Contact</span>
+          <div class="value">WhatsApp (fastest reply)</div>
+        </div>
+        <div class="card">
+          <span class="label">Warranty</span>
+          <div class="value">Free bug fixes for 30 days after delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Optiqo. All rights reserved.</span>
+    <span class="mono">Designing Ideas &middot; Developing Solutions &middot; Growing Brands</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/8801935128454" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.858.507 3.649 1.463 5.223L2 22l4.898-1.443A9.965 9.965 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.19a8.14 8.14 0 01-4.166-1.14l-.298-.177-2.905.857.867-2.833-.194-.29A8.157 8.157 0 013.86 12.004c0-4.492 3.65-8.143 8.144-8.143 4.494 0 8.144 3.65 8.144 8.143 0 4.494-3.65 8.186-8.144 8.186z"/></svg>
+</a>
+
+<button class="top-btn" id="topBtn" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<button class="faq-fab" id="faqFab" aria-label="Open FAQ chat">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</button>
+
+<div class="faq-widget" id="faqWidget">
+  <div class="faq-head">
+    <div class="faq-head-info">
+      <div class="faq-avatar">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      </div>
+      <div class="faq-head-text">
+        <span>Optiqo Assistant</span>
+        <small>Usually replies instantly</small>
+      </div>
+    </div>
+    <button id="faqClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="faq-body" id="faqBody">
+    <div class="faq-msg bot">Hi! I can answer quick questions about Optiqo. Tap one below or type your own.</div>
+  </div>
+  <div class="faq-chips" id="faqChips">
+    <button class="chip">What services do you offer?</button>
+    <button class="chip">How long does a project take?</button>
+    <button class="chip">Do you do graphic design?</button>
+    <button class="chip">Can you host my site and buy a domain?</button>
+    <button class="chip">How can I contact you?</button>
+  </div>
+  <form class="faq-form" id="faqForm">
+    <input type="text" id="faqInput" placeholder="Ask a question…" autocomplete="off">
+    <button type="submit" aria-label="Send">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+</div>
+
+<script>
+  const faqData = [
+    { keywords: ['hi','hello','hey','assalamu','salam','hola','kemon acho','kemon achen','ei je'], answer: "Hi there! 👋 I can help with questions about our services, pricing, timeline, or how to reach us — what would you like to know?" },
+    { keywords: ['thank','thanks','dhonnobad','thnx'], answer: "You're welcome! Let us know if there's anything else you'd like to ask." },
+    { keywords: ['bye','goodbye','see you','abar dekha hobe','bhalo thakben'], answer: "Take care! Reach out on WhatsApp anytime if you need us." },
+    { keywords: ['human','real person','talk to someone','agent','manush','sotti manush'], answer: "Sure — message us directly on WhatsApp at +880 1935-128454 and a real person will help." },
+    { keywords: ['service','offer','what do you do','what can you','ki kaj','kaj koren','ki ki service','apnara ki koren'], answer: "We cover four things: Web Design & Development, Graphic Design & Branding, Digital Solutions & Growth, and Hosting & Domains." },
+    { keywords: ['long','time','timeline','turnaround','fast','deliver','koto din','koto shomoy','kobe pabo'], answer: "Most small business projects take about 1–2 weeks once the design is approved, depending on scope. The Contact page's estimator gives a delivery estimate based on your specific project." },
+    { keywords: ['graphic','branding','logo','design','logo banaben','design lagbe'], answer: "Yes — logos, brand kits, business cards, banners, packaging, menus, signage, and more are all part of what we do." },
+    { keywords: ['host','hosting','domain','buy a domain','dns','domain lagbe','hosting lagbe'], answer: "Yes — we register your domain and host the site for you. There's a small one-time signup fee plus a monthly rate that covers hosting, domain, and regular maintenance." },
+    { keywords: ['contact','reach','email','phone','call','whatsapp','jogajog','number ache'], answer: "You can email optiqoweb@gmail.com, message us on WhatsApp at +880 1935-128454, or visit the Contact page." },
+    { keywords: ['price','cost','how much','budget','quote','negotiat','dam','koto taka','rate koto','price koto'], answer: "Try the instant estimator on the Contact page for a ballpark price — it's not fixed, so we're happy to negotiate once we chat." },
+    { keywords: ['portfolio','work','example','sites','built','age ki banaisen','kaj dekhte chai'], answer: "We've built a Bengali news portal, an e-commerce template, and a photography business site — check out our Work page for the full showcase, including graphic design examples." },
+    { keywords: ['process','how it works','steps','start','kivabe shuru','kaj kivabe hoy'], answer: "It's three steps: we talk it through, design & build with your sign-off, then launch & support afterward." },
+    { keywords: ['refund','cancel','cancellation','taka ferot','bad dite chai'], answer: "Refunds depend on how far along the project is — see the Refund & Cancellation section on the Policies page for details." },
+    { keywords: ['privacy','data','tottho','information nirapod'], answer: "We only use your information to deliver your project and respond to you — see the Privacy Policy on the Policies page for details." },
+    { keywords: ['warranty','guarantee','bug','support after','problem hole','thik kore diben'], answer: "We offer free bug fixes for 30 days after delivery." },
+    { keywords: ['payment','pay','bkash','nagad','bank','kivabe taka debo','poisha'], answer: "We accept bKash, Nagad, and bank transfer." },
+    { keywords: ['advance','deposit','installment','agrim','ogrim','kisti'], answer: "Usually it's 50% advance to start the work, and 50% on delivery." },
+    { keywords: ['location','address','office','kothay obosthito','kothay apnara'], answer: "We're based in Jashore, Bangladesh, but we work with clients remotely worldwide." },
+    { keywords: ['response time','reply','koto tarataRi','koto taratari reply'], answer: "We usually reply within a few hours." }
+  ];
+  const fallback = "I'm not sure about that one — try asking about services, pricing, timeline, or message us directly on WhatsApp and the team will help.";
+
+  const faqFab = document.getElementById('faqFab');
+  const faqWidget = document.getElementById('faqWidget');
+  const faqClose = document.getElementById('faqClose');
+  const faqBody = document.getElementById('faqBody');
+  const faqForm = document.getElementById('faqForm');
+  const faqInput = document.getElementById('faqInput');
+  const faqChips = document.getElementById('faqChips');
+
+  function addMessage(text, sender){
+    const msg = document.createElement('div');
+    msg.className = 'faq-msg ' + sender;
+    msg.textContent = text;
+    faqBody.appendChild(msg);
+    faqBody.scrollTop = faqBody.scrollHeight;
+  }
+
+  function respond(question){
+    addMessage(question, 'user');
+    const q = question.toLowerCase();
+    const match = faqData.find(item => item.keywords.some(k => q.includes(k)));
+    const typing = document.createElement('div');
+    typing.className = 'faq-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    faqBody.appendChild(typing);
+    faqBody.scrollTop = faqBody.scrollHeight;
+    setTimeout(() => {
+      typing.remove();
+      addMessage(match ? match.answer : fallback, 'bot');
+    }, 700);
+  }
+
+  faqFab.addEventListener('click', () => {
+    faqWidget.classList.toggle('open');
+  });
+  faqClose.addEventListener('click', () => faqWidget.classList.remove('open'));
+
+  faqChips.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => respond(chip.textContent));
+  });
+
+  faqForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = faqInput.value.trim();
+    if(!val) return;
+    respond(val);
+    faqInput.value = '';
+  });
+</script>
+
+<script>
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 480);
+  });
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<script>
+  /* ===== PRICING CONFIG =====
+     All figures are in BDT. Edit these to match your real rates —
+     they're only placeholders. USD_RATE is the approx BDT-per-USD
+     conversion used just to show a second currency; update it
+     whenever the exchange rate moves. */
+  const USD_RATE = 122;
+
+  const SITE_BASE = {
+    landing:   { min: 3000,  max: 5000, label: 'Simple 1-page site' },
+    business:  { min: 7000, max: 12000, label: 'Multi-page site' },
+    ecommerce: { min: 10000, max: 18000, label: 'Online shop' }
+  };
+  const PAGES_ADD = {
+    small:  { min: 0,     max: 0,     label: '1–3 pages' },
+    medium: { min: 2500,  max: 4000,  label: '4–7 pages' },
+    large:  { min: 5000, max: 8000,  label: '8+ pages' }
+  };
+  const FEATURES_ADD = {
+    cms:    { min: 3000, max: 5000,  label: 'Self-editable content (CMS)' },
+    sheets: { min: 3000, max: 6000,  label: 'Google Sheets–backed data' },
+    lang:   { min: 3000, max: 5000,  label: 'Bengali + English' },
+    seo:    { min: 1500, max: 3000,  label: 'SEO setup' },
+    theme:  { min: 800, max: 1500,  label: 'Dark/light theme toggle' },
+    wa:     { min: 300, max: 800,  label: 'WhatsApp floating button' },
+    totop:  { min: 200, max: 400,  label: 'Back-to-top button' },
+    faq:    { min: 2500, max: 4500, label: 'FAQ chat widget' },
+    copy:   { min: 300, max: 600,  label: 'Copy-to-clipboard contact card' },
+    search: { min: 1000, max: 2000,  label: 'Search bar' }
+  };
+  const DELIVERY_DAYS = {
+    landing:    { min: 3,  max: 5  },
+    business:   { min: 7,  max: 12 },
+    ecommerce:  { min: 10, max: 18 },
+    brandingOnly: { min: 3, max: 6 }
+  };
+  const MONTHLY_PLAN = { min: 500, max: 1000, label: 'Hosting, domain & regular maintenance' };
+  const ONGOING_SETUP_FEE = { min: 1000, max: 1500, label: 'Hosting, domain & maintenance signup (one-time)' };
+  const BRAND_BASE = {
+    logo:   { min: 1500,  max: 3000,  label: 'Logo Design' },
+    kit:    { min: 6000, max: 10000, label: 'Brand Identity Kit' },
+    social: { min: 3000,  max: 5000,  label: 'Social Media Pack' },
+    card:   { min: 800,   max: 1500,  label: 'Business Card' },
+    banner: { min: 1000,  max: 2500,  label: 'Banner / Poster' },
+    packaging: { min: 1500, max: 3000, label: 'Packaging / Label' },
+    letterhead: { min: 1200, max: 2500, label: 'Letterhead & Stationery' },
+    flyer: { min: 1000,   max: 2000,  label: 'Flyer / Leaflet' },
+    menu:  { min: 1500,   max: 3000,  label: 'Menu Design' },
+    signboard: { min: 2000, max: 4000, label: 'Signboard / Shop Sign' },
+    fbpack: { min: 1000,  max: 2000,  label: 'Facebook Cover & Profile Pack' },
+    invite: { min: 800,   max: 1800,  label: 'Invitation / Greeting Card' },
+    thumb:  { min: 800,   max: 1500,  label: 'YouTube Thumbnail Pack' }
+  };
+  const RUSH_MULTIPLIER = 1.2;
+
+  const estForm       = document.querySelector('.estimate-form');
+  const siteGroup      = document.getElementById('siteGroup');
+  const pagesGroup      = document.getElementById('pagesGroup');
+  const featuresGroup   = document.getElementById('featuresGroup');
+  const ongoingGroup    = document.getElementById('ongoingGroup');
+  const brandGroup      = document.getElementById('brandGroup');
+  const estRangeBDT     = document.getElementById('estRangeBDT');
+  const estRangeUSD     = document.getElementById('estRangeUSD');
+  const estDelivery     = document.getElementById('estDelivery');
+  const estMonthlyWrap  = document.getElementById('estMonthlyWrap');
+  const estMonthlyBDT   = document.getElementById('estMonthlyBDT');
+  const estMonthlyUSD   = document.getElementById('estMonthlyUSD');
+  const estList         = document.getElementById('estList');
+  const estWarn         = document.getElementById('estWarn');
+  const estSent         = document.getElementById('estSent');
+  const estName         = document.getElementById('estName');
+  const estPhone        = document.getElementById('estPhone');
+  const estContact      = document.getElementById('estContact');
+  const estNotes        = document.getElementById('estNotes');
+
+  function selectedValue(name){
+    const el = estForm.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  }
+  function selectedValues(name){
+    return Array.from(estForm.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+  }
+  function fmt(n){
+    return '৳' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtUSD(n){
+    return '$' + Math.round(n / USD_RATE).toLocaleString('en-US');
+  }
+
+  let prevMin = 0, prevMax = 0, prevMonthlyMin = 0, prevMonthlyMax = 0;
+  let rangeAnimId = null, monthlyAnimId = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateRange(fromMin, fromMax, toMin, toMax, onFrame, cancelToken){
+    if(reduceMotion){ onFrame(toMin, toMax); return; }
+    const duration = 450;
+    const start = performance.now();
+    if(cancelToken.id) cancelAnimationFrame(cancelToken.id);
+    function step(now){
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const curMin = fromMin + (toMin - fromMin) * eased;
+      const curMax = fromMax + (toMax - fromMax) * eased;
+      onFrame(curMin, curMax);
+      if(t < 1) cancelToken.id = requestAnimationFrame(step);
+    }
+    cancelToken.id = requestAnimationFrame(step);
+  }
+  const rangeAnimToken = {}, monthlyAnimToken = {};
+
+  function calculate(){
+    const type = selectedValue('type');
+    const site = selectedValue('site');
+    const pages = selectedValue('pages');
+    const features = selectedValues('feat');
+    const brand = selectedValues('brand');
+    const timeline = selectedValue('timeline');
+
+    let min = 0, max = 0;
+    const items = [];
+
+    const wantsWebsite = (type === 'website' || type === 'both');
+    const wantsBranding = (type === 'branding' || type === 'both');
+
+    siteGroup.style.display = wantsWebsite ? '' : 'none';
+    featuresGroup.style.display = wantsWebsite ? '' : 'none';
+    ongoingGroup.style.display = wantsWebsite ? '' : 'none';
+    pagesGroup.style.display = (wantsWebsite && site === 'business') ? '' : 'none';
+    brandGroup.style.display = wantsBranding ? '' : 'none';
+
+    if(wantsWebsite && SITE_BASE[site]){
+      min += SITE_BASE[site].min; max += SITE_BASE[site].max;
+      items.push({ label: SITE_BASE[site].label, min: SITE_BASE[site].min, max: SITE_BASE[site].max });
+      if(site === 'business' && PAGES_ADD[pages]){
+        min += PAGES_ADD[pages].min; max += PAGES_ADD[pages].max;
+        if(pages !== 'small') items.push({ label: PAGES_ADD[pages].label, min: PAGES_ADD[pages].min, max: PAGES_ADD[pages].max });
+      }
+      features.forEach(f => {
+        if(FEATURES_ADD[f]){ min += FEATURES_ADD[f].min; max += FEATURES_ADD[f].max; items.push({ label: FEATURES_ADD[f].label, min: FEATURES_ADD[f].min, max: FEATURES_ADD[f].max }); }
+      });
+    }
+
+    if(wantsBranding){
+      const chosen = brand.length ? brand : ['logo'];
+      chosen.forEach(b => {
+        if(BRAND_BASE[b]){ min += BRAND_BASE[b].min; max += BRAND_BASE[b].max; items.push({ label: BRAND_BASE[b].label, min: BRAND_BASE[b].min, max: BRAND_BASE[b].max }); }
+      });
+    }
+
+    if(timeline === 'rush'){
+      const preRushMin = min, preRushMax = max;
+      min = Math.round(min * RUSH_MULTIPLIER);
+      max = Math.round(max * RUSH_MULTIPLIER);
+      items.push({ label: 'Rush timeline (+20%)', min: min - preRushMin, max: max - preRushMax });
+    }
+
+    let monthlyMin = 0, monthlyMax = 0;
+    const wantsMonthly = wantsWebsite && selectedValues('monthly').includes('plan');
+    if(wantsMonthly){
+      monthlyMin = MONTHLY_PLAN.min; monthlyMax = MONTHLY_PLAN.max;
+      min += ONGOING_SETUP_FEE.min; max += ONGOING_SETUP_FEE.max;
+      items.push({ label: ONGOING_SETUP_FEE.label, min: ONGOING_SETUP_FEE.min, max: ONGOING_SETUP_FEE.max });
+    }
+
+    animateRange(prevMin, prevMax, min, max, (curMin, curMax) => {
+      estRangeBDT.textContent = `${fmt(curMin)} – ${fmt(curMax)}`;
+      estRangeUSD.textContent = `≈ ${fmtUSD(curMin)} – ${fmtUSD(curMax)}`;
+    }, rangeAnimToken);
+    prevMin = min; prevMax = max;
+
+    estMonthlyWrap.classList.toggle('show', wantsMonthly);
+    if(wantsMonthly){
+      animateRange(prevMonthlyMin, prevMonthlyMax, monthlyMin, monthlyMax, (curMin, curMax) => {
+        estMonthlyBDT.innerHTML = `${fmt(curMin)} – ${fmt(curMax)}<span class="per">/mo</span>`;
+        estMonthlyUSD.textContent = `≈ ${fmtUSD(curMin)} – ${fmtUSD(curMax)}/mo`;
+      }, monthlyAnimToken);
+    }
+    prevMonthlyMin = monthlyMin; prevMonthlyMax = monthlyMax;
+    estList.innerHTML = items.map(i => `<li><span class="est-item-left"><span class="tick">✓</span>${i.label}</span><span class="est-item-price">${fmt(i.min)} – ${fmt(i.max)}</span></li>`).join('');
+
+    let dMin = 0, dMax = 0;
+    if(wantsWebsite && DELIVERY_DAYS[site]){
+      dMin += DELIVERY_DAYS[site].min; dMax += DELIVERY_DAYS[site].max;
+    }
+    if(wantsBranding){
+      if(wantsWebsite){ dMin += 2; dMax += 3; }
+      else { dMin += DELIVERY_DAYS.brandingOnly.min; dMax += DELIVERY_DAYS.brandingOnly.max; }
+    }
+    if(timeline === 'rush'){ dMin = Math.max(1, Math.round(dMin * 0.5)); dMax = Math.max(2, Math.round(dMax * 0.5)); }
+    estDelivery.textContent = dMin === dMax ? `${dMin} days` : `${dMin} – ${dMax} days`;
+
+    return { min, max, monthlyMin, monthlyMax, wantsMonthly, items, type, timeline, dMin, dMax };
+  }
+
+  function buildMessage(){
+    const result = calculate();
+    const name = estName.value.trim() || 'Not given';
+    const phone = estPhone.value.trim() || 'Not given';
+    const contact = estContact.value.trim();
+    const notes = estNotes.value.trim();
+    const typeLabel = result.type === 'website' ? 'Website' : result.type === 'branding' ? 'Graphic design / branding' : 'Website + branding';
+    const timelineLabel = result.timeline === 'rush' ? 'Rush (under a week)' : 'Standard (1–2 weeks)';
+
+    let msg = `Hi Optiqo! I'd like a project estimate.\n\n`;
+    msg += `Name: ${name}\nPhone/WhatsApp: ${phone}\n`;
+    if(contact) msg += `Email: ${contact}\n`;
+    msg += `\n`;
+    msg += `Project: ${typeLabel}\n`;
+    result.items.forEach(i => { msg += `• ${i.label}: ${fmt(i.min)} – ${fmt(i.max)}\n`; });
+    msg += `Timeline: ${timelineLabel}\n`;
+    msg += `Estimated delivery: ${result.dMin === result.dMax ? result.dMin + ' days' : result.dMin + ' – ' + result.dMax + ' days'}\n`;
+    msg += `\n(Usually 50% advance to start, 50% on delivery.)\n`;
+    if(notes) msg += `Notes: ${notes}\n`;
+    msg += `\nEstimated setup fee (one-time): ${fmt(result.min)} – ${fmt(result.max)} (${fmtUSD(result.min)} – ${fmtUSD(result.max)})\n`;
+    if(result.wantsMonthly){
+      msg += `Estimated monthly fee (hosting, domain & maintenance): ${fmt(result.monthlyMin)} – ${fmt(result.monthlyMax)}/mo (${fmtUSD(result.monthlyMin)} – ${fmtUSD(result.monthlyMax)}/mo)\n`;
+    }
+    msg += `\n(This is a ballpark estimate, not a fixed price — happy to discuss further.)\n`;
+    msg += `\n(Generated by the instant estimate tool on optiqo's site.)`;
+    return msg;
+  }
+
+  function validate(){
+    let ok = true;
+    [estName, estPhone].forEach(el => {
+      if(!el.value.trim()){ el.classList.add('invalid'); ok = false; }
+      else{ el.classList.remove('invalid'); }
+    });
+    estWarn.classList.toggle('show', !ok);
+    return ok;
+  }
+
+  estForm.addEventListener('input', calculate);
+  calculate();
+
+  document.getElementById('sendWhatsapp').addEventListener('click', function(){
+    if(!validate()) return;
+    const btn = this;
+    btn.classList.add('is-loading');
+    estSent.classList.remove('show');
+    setTimeout(() => {
+      const text = encodeURIComponent(buildMessage());
+      window.open(`https://wa.me/8801935128454?text=${text}`, '_blank', 'noopener');
+      estSent.classList.add('show');
+      btn.classList.remove('is-loading');
+    }, 500);
+  });
+
+  document.getElementById('sendEmail').addEventListener('click', function(){
+    if(!validate()) return;
+    const btn = this;
+    btn.classList.add('is-loading');
+    estSent.classList.remove('show');
+    setTimeout(() => {
+      const subject = encodeURIComponent(`Project estimate request from ${estName.value.trim()}`);
+      const body = encodeURIComponent(buildMessage());
+      window.location.href = `mailto:optiqoweb@gmail.com?subject=${subject}&body=${body}`;
+      estSent.classList.add('show');
+      btn.classList.remove('is-loading');
+    }, 500);
+  });
+</script>
+
+<script>
+  const emailCard = document.getElementById('emailCard');
+  const emailCardToast = document.getElementById('emailCardToast');
+  if(emailCard && emailCardToast){
+    emailCard.addEventListener('click', () => {
+      const email = 'optiqoweb@gmail.com';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      emailCardToast.classList.add('show');
+      setTimeout(() => emailCardToast.classList.remove('show'), 1600);
+    });
+  }
+</script>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if(isLight){
+      document.documentElement.removeAttribute('data-theme');
+      try{ localStorage.setItem('theme', 'dark'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      try{ localStorage.setItem('theme', 'light'); }catch(e){}
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('load', function(){
+    var pl = document.getElementById('pageLoader');
+    if(pl){ setTimeout(function(){ pl.classList.add('hide'); }, 300); }
+  });
+</script>
+</body>
+</html>
